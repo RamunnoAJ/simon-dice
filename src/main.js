@@ -65,7 +65,7 @@ function verificarPatrones(patron) {
   }
   if (patronUsuario.length === patronMaquina.length) {
     bloquearClickUsuario()
-    setTimeout(manejarJuego, dificultadMilisegundos)
+    setTimeout(manejarJuego, 1000)
   }
 }
 
