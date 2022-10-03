@@ -14,6 +14,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: 'Montserrat', sans-serif;
+  background-color: #ccc;
 }
 
 .contenedor {
@@ -26,12 +27,6 @@ body {
   justify-content: center;
   align-items: center;
   gap: 2rem;
-}
-
-.contenedor__titulo,
-.contenedor__subtitulo {
-  text-align: center;
-  color: #616161;
 }
 
 .contenedor__titulo {
@@ -51,7 +46,7 @@ body {
 
 .bloque {
   height: 200px;
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: pointer;
 }
 
@@ -59,19 +54,19 @@ body {
   opacity: 1;
 }
 
-.amarillo {
+#cuadro-amarillo {
   background-color: yellow;
 }
 
-.azul {
+#cuadro-azul {
   background-color: blue;
 }
 
-.verde {
+#cuadro-verde {
   background-color: green;
 }
 
-.rojo {
+#cuadro-rojo {
   background-color: red;
 }
 
@@ -100,4 +95,14 @@ body {
 .btn:hover {
   background-color: aqua;
   color: black;
+}
+
+.estado {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.oculto {
+  display: hidden;
 }
