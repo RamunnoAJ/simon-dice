@@ -13,11 +13,13 @@
     <div class="contenedor">
       <h1 class="contenedor__titulo">Simón Dice</h1>
       <div class="contenedor__bloques">
-        <div class="bloque azul"></div>
-        <div class="bloque amarillo"></div>
-        <div class="bloque verde"></div>
-        <div class="bloque rojo"></div>
+        <div id="cuadro-azul" class="bloque"></div>
+        <div id="cuadro-amarillo" class="bloque"></div>
+        <div id="cuadro-verde" class="bloque"></div>
+        <div id="cuadro-rojo" class="bloque"></div>
       </div>
+      <span class="estado oculto"></span>
+      <span class="ronda"></span>
       <div>
         <button class="btn btn-jugar">Jugar</button>
       </div>
@@ -25,9 +27,9 @@
         Elige dificultad (Por defecto es normal)
       </h2>
       <div class="dificultades">
-        <button class="btn">Lento</button>
-        <button class="btn">Normal</button>
-        <button class="btn">Rápido</button>
+        <button class="btn btn-dificultad lento">Lento</button>
+        <button class="btn btn-dificultad normal">Normal</button>
+        <button class="btn btn-dificultad rapido">Rápido</button>
       </div>
     </div>
 
