@@ -1,24 +1,33 @@
 const $bloques = document.querySelectorAll('.bloque')
 const $botonJugar = document.querySelector('.btn-jugar')
+const $tablero = '.contenedor__bloques'
 
-let patronDeMaquina = []
-let patronDeUsuario = []
+let patronMaquina = []
+let patronUsuario = []
+let dificultadMilisegundos = 0
 
-$botonJugar.addEventListener('click', manejarJuego)
+$botonJugar.addEventListener('click', () => {
+  bloquearClickUsuario()
+  patronMaquina = []
+  manejarJuego()
+})
 
 function manejarJuego() {
   manejarEstado('Turno de la máquina')
   mostrarElemento('.estado')
+  mostrarElemento($tablero)
   bloquearClickUsuario()
+  manejarDificultad()
 
   const nuevoCuadro = obtenerCuadroAleatorio()
-  patronDeMaquina.push(nuevoCuadro)
+  patronMaquina.push(nuevoCuadro)
 
-  const RETRASAR_TURNO_USUARIO = (patronDeMaquina.length + 1) * 1000
+  const RETRASAR_TURNO_USUARIO =
+    (patronMaquina.length + 1) * dificultadMilisegundos
 
-  patronDeMaquina.forEach(function (cuadro, indice) {
+  patronMaquina.forEach(function (cuadro, indice) {
     bloquearClickUsuario()
-    const RETRASO = (indice + 1) * 1000
+    const RETRASO = (indice + 1) * dificultadMilisegundos
 
     setTimeout(() => {
       iluminarCuadro(cuadro)
@@ -27,32 +36,36 @@ function manejarJuego() {
 
   setTimeout(() => {
     manejarEstado(
-      `Es tu turno, esta es la ronda número ${patronDeMaquina.length}`
+      `Es tu turno, esta es la ronda número ${patronMaquina.length}`
     )
   }, RETRASAR_TURNO_USUARIO)
 
-  patronDeUsuario = []
+  patronUsuario = []
 }
 
 function manejarClickUsuario(e) {
   const elementoClickeado = `#${e.target.id}`
 
   iluminarCuadro(elementoClickeado)
+  setTimeout(() => {
+    apagarCuadro(elementoClickeado)
+    desbloquearClickUsuario()
+  }, dificultadMilisegundos)
 
-  patronDeUsuario.push(elementoClickeado)
+  patronUsuario.push(elementoClickeado)
 
   verificarPatrones(elementoClickeado)
 }
 
 function verificarPatrones(patron) {
-  const cuadroSeleccionadoMaquina = patronDeMaquina[patronDeUsuario.length - 1]
+  const cuadroSeleccionadoMaquina = patronMaquina[patronUsuario.length - 1]
   if (patron != cuadroSeleccionadoMaquina) {
     perderJuego()
     return
   }
-  if (patronDeUsuario.length === patronDeMaquina.length) {
+  if (patronUsuario.length === patronMaquina.length) {
     bloquearClickUsuario()
-    setTimeout(manejarJuego, 1000)
+    setTimeout(manejarJuego, dificultadMilisegundos)
   }
 }
 
@@ -77,8 +90,10 @@ function obtenerCuadroAleatorio() {
 function iluminarCuadro(cuadroAleatorio) {
   bloquearClickUsuario()
   document.querySelector(cuadroAleatorio).className = 'bloque activo'
-  setTimeout(() => apagarCuadro(cuadroAleatorio), 1000)
-  desbloquearClickUsuario()
+  setTimeout(() => {
+    apagarCuadro(cuadroAleatorio)
+    desbloquearClickUsuario()
+  }, dificultadMilisegundos - 500)
 }
 
 function apagarCuadro(cuadroAleatorio) {
@@ -124,4 +139,23 @@ function manejarEstado(nuevoEstado) {
 
 function perderJuego() {
   manejarEstado('Perdiste')
+  ocultarElemento($tablero)
+}
+
+document.querySelector('.lento').addEventListener('click', () => {
+  dificultadMilisegundos = 1500
+})
+
+document.querySelector('.normal').addEventListener('click', () => {
+  dificultadMilisegundos = 1250
+})
+
+document.querySelector('.rapido').addEventListener('click', () => {
+  dificultadMilisegundos = 900
+})
+
+function manejarDificultad() {
+  if (dificultadMilisegundos === 0) {
+    dificultadMilisegundos = 1250
+  }
 }
