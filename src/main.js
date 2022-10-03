@@ -101,27 +101,15 @@ function apagarCuadro(cuadroAleatorio) {
 }
 
 function bloquearClickUsuario() {
-  const $cuadroAmarillo = document.querySelector('#cuadro-amarillo')
-  const $cuadroAzul = document.querySelector('#cuadro-azul')
-  const $cuadroVerde = document.querySelector('#cuadro-verde')
-  const $cuadroRojo = document.querySelector('#cuadro-rojo')
-
-  $cuadroAmarillo.removeEventListener('click', manejarClickUsuario)
-  $cuadroAzul.removeEventListener('click', manejarClickUsuario)
-  $cuadroVerde.removeEventListener('click', manejarClickUsuario)
-  $cuadroRojo.removeEventListener('click', manejarClickUsuario)
+  $bloques.forEach((bloque) =>
+    bloque.removeEventListener('click', manejarClickUsuario)
+  )
 }
 
 function desbloquearClickUsuario() {
-  const $cuadroAmarillo = document.querySelector('#cuadro-amarillo')
-  const $cuadroAzul = document.querySelector('#cuadro-azul')
-  const $cuadroVerde = document.querySelector('#cuadro-verde')
-  const $cuadroRojo = document.querySelector('#cuadro-rojo')
-
-  $cuadroAmarillo.addEventListener('click', manejarClickUsuario)
-  $cuadroAzul.addEventListener('click', manejarClickUsuario)
-  $cuadroVerde.addEventListener('click', manejarClickUsuario)
-  $cuadroRojo.addEventListener('click', manejarClickUsuario)
+  $bloques.forEach((bloque) =>
+    bloque.addEventListener('click', manejarClickUsuario)
+  )
 }
 
 function mostrarElemento(elemento) {
