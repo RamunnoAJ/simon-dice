@@ -13,4 +13,91 @@ html {
 
 body {
   font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contenedor__titulo,
+.contenedor__subtitulo {
+  text-align: center;
+  color: #616161;
+}
+
+.contenedor__titulo {
+  font-size: 3.8rem;
+  text-transform: uppercase;
+}
+
+.contenedor__subtitulo {
+  font-size: 2.4rem;
+}
+
+.contenedor__bloques {
+  display: grid;
+  grid-template-columns: repeat(2, 300px);
+  gap: 2rem;
+}
+
+.bloque {
+  height: 200px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.bloque.activo {
+  opacity: 1;
+}
+
+.amarillo {
+  background-color: yellow;
+}
+
+.azul {
+  background-color: blue;
+}
+
+.verde {
+  background-color: green;
+}
+
+.rojo {
+  background-color: red;
+}
+
+.dificultades {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-jugar {
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: aqua;
+  color: black;
 }
