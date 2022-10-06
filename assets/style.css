@@ -40,14 +40,24 @@ body {
 
 .contenedor__bloques {
   display: grid;
-  grid-template-columns: repeat(2, 300px);
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(auto, 300px));
+  gap: 1rem;
 }
 
 .bloque {
-  height: 200px;
+  height: 100px;
   opacity: 0.5;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .contenedor__bloques {
+    gap: 2rem;
+  }
+
+  .bloque {
+    height: 200px;
+  }
 }
 
 .bloque.activo {
@@ -74,7 +84,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 0.5rem;
 }
 
 .btn {
