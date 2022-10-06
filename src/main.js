@@ -1,7 +1,8 @@
 const $bloques = document.querySelectorAll('.bloque')
 const $botonJugar = document.querySelector('.btn-jugar')
-const $tablero = '.contenedor__bloques'
+const $tablero = document.querySelector('.contenedor__bloques')
 const $botonReiniciar = document.querySelector('.btn-reiniciar')
+const $estado = document.querySelector('.estado')
 
 let patronMaquina = []
 let patronUsuario = []
@@ -20,7 +21,7 @@ $botonReiniciar.addEventListener('click', () => {
 
 function manejarJuego() {
   manejarEstado('Turno de la máquina')
-  mostrarElemento('.estado')
+  mostrarElemento($estado)
   mostrarElemento($tablero)
   bloquearClickUsuario()
   manejarDificultad()
@@ -55,7 +56,6 @@ function manejarClickUsuario(e) {
   iluminarCuadro(elementoClickeado)
   setTimeout(() => {
     apagarCuadro(elementoClickeado)
-    desbloquearClickUsuario()
   }, dificultadMilisegundos)
 
   patronUsuario.push(elementoClickeado)
@@ -119,11 +119,11 @@ function desbloquearClickUsuario() {
 }
 
 function mostrarElemento(elemento) {
-  document.querySelector(elemento).classList.remove('oculto')
+  elemento.classList.remove('oculto')
 }
 
 function ocultarElemento(elemento) {
-  document.querySelector(elemento).classList.add('oculto')
+  elemento.classList.add('oculto')
 }
 
 function manejarEstado(nuevoEstado) {
@@ -132,6 +132,7 @@ function manejarEstado(nuevoEstado) {
 }
 
 function perderJuego() {
+  bloquearClickUsuario()
   manejarEstado('Perdiste')
   ocultarElemento($tablero)
 }
@@ -158,6 +159,7 @@ function manejarDificultad() {
 }
 
 function reiniciarJuego() {
+  manejarEstado('Reiniciando')
   patronMaquina = []
-  setTimeout(manejarJuego, 1000)
+  setTimeout(manejarJuego, 800)
 }
