@@ -88,7 +88,8 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-.btn-jugar {
+.btn-jugar,
+.btn-reiniciar {
   text-transform: uppercase;
 }
 

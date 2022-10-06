@@ -1,15 +1,21 @@
 const $bloques = document.querySelectorAll('.bloque')
 const $botonJugar = document.querySelector('.btn-jugar')
 const $tablero = '.contenedor__bloques'
+const $botonReiniciar = document.querySelector('.btn-reiniciar')
 
 let patronMaquina = []
 let patronUsuario = []
 let dificultadMilisegundos = 0
 
 $botonJugar.addEventListener('click', () => {
+  $botonReiniciar.classList.remove('oculto')
+  $botonJugar.classList.add('oculto')
   bloquearClickUsuario()
-  patronMaquina = []
   manejarJuego()
+})
+
+$botonReiniciar.addEventListener('click', () => {
+  reiniciarJuego()
 })
 
 function manejarJuego() {
@@ -132,18 +138,26 @@ function perderJuego() {
 
 document.querySelector('.lento').addEventListener('click', () => {
   dificultadMilisegundos = 1500
+  reiniciarJuego()
 })
 
 document.querySelector('.normal').addEventListener('click', () => {
   dificultadMilisegundos = 1250
+  reiniciarJuego()
 })
 
 document.querySelector('.rapido').addEventListener('click', () => {
   dificultadMilisegundos = 900
+  reiniciarJuego()
 })
 
 function manejarDificultad() {
   if (dificultadMilisegundos === 0) {
     dificultadMilisegundos = 1250
   }
+}
+
+function reiniciarJuego() {
+  patronMaquina = []
+  setTimeout(manejarJuego, 1000)
 }
